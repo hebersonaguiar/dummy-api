@@ -7,7 +7,7 @@ from flask import flash, request
 @app.route('/add', methods=['POST'])
 def add_emp():
 	try:
-		_json = request.json
+        _json = request.json
 		_name = _json['name']
 		_email = _json['email']
 		_phone = _json['phone']
