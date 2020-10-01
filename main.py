@@ -33,8 +33,8 @@ def add_emp():
 @app.route('/emp')
 def emp():
     try:
-        conn = mysql.connection.cursor()
-        cursor = conn.cursor()
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute("SELECT id, name, email, phone, address FROM rest_emp")
         empRows = cursor.fetchall()
         respone = jsonify(empRows)
@@ -49,8 +49,8 @@ def emp():
 @app.route('/emp/<int:id>')
 def emp_id(id):
     try:
-        conn = mysql.connection.cursor()
-        cursor = conn.cursor()
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute("SELECT id, name, email, phone, address FROM rest_emp WHERE id =%s", id)
         empRow = cursor.fetchone()
         respone = jsonify(empRow)
@@ -74,7 +74,7 @@ def update_emp():
         if _name and _email and _phone and _address and _id and request.method == 'PUT':
             sqlQuery = "UPDATE rest_emp SET name=%s, email=%s, phone=%s, address=%s WHERE id=%s"
             bindData = (_name, _email, _phone, _address, _id,)
-            conn = mysql.connection.cursor()
+            conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(sqlQuery, bindData)
             conn.commit()
@@ -92,7 +92,7 @@ def update_emp():
 @app.route('/delete/<int:id>', methods=['DELETE'])
 def delete_emp(id):
     try:
-        conn = mysql.connection.cursor()
+        conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute("DELETE FROM rest_emp WHERE id =%s", (id,))
         conn.commit()
@@ -116,4 +116,4 @@ def not_found(error=None):
     return respone
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port='5000')
+    app.run()
