@@ -33,18 +33,17 @@ def add_emp():
 @app.route('/emp')
 def emp():
     try:
-        conn = mysql.connect()
-        cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("SELECT id, name, email, phone, address FROM rest_emp")
-        empRows = cursor.fetchall()
+        cur = mysql.connection.cursor()
+        # cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cur.execute("SELECT id, name, email, phone, address FROM rest_emp")
+        empRows = cur.fetchall()
         respone = jsonify(empRows)
         respone.status_code = 200
         return respone
     except Exception as e:
         print(e)
     finally:
-        cursor.close()
-        conn.close()
+        cur.close()
         
 @app.route('/emp/<int:id>')
 def emp_id(id):
