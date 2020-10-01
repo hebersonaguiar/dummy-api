@@ -27,7 +27,7 @@ def add_emp():
     except Exception as e:
         print(e)
     finally:
-        cursor.close()
+        cur.close()
 
 @app.route('/emp')
 def emp():
