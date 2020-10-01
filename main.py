@@ -57,7 +57,7 @@ def emp(id):
         respone.status_code = 200
         return respone
     except Exception as e:
-        print(e)]
+        print(e)
     finally:
         cursor.close()
         conn.close()
