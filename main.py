@@ -47,7 +47,7 @@ def emp():
         conn.close()
         
 @app.route('/emp/<int:id>')
-def emp(id):
+def emp_id(id):
     try:
         conn = mysql.connection.cursor()
         cursor = conn.cursor()
