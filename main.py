@@ -55,7 +55,7 @@ def emp(id):
         empRow = cursor.fetchone()
         respone = jsonify(empRow)
         respone.status_code = 200
-		return respone
+        return respone
     except Exception as e:
         print(e)]
     finally:
