@@ -13,10 +13,10 @@ def add_emp():
         _phone = _json['phone']
         _address = _json['address']
         if _name and _email and _phone and _address and request.method == 'POST':
+            cur = mysql.connection.cursor()
             cur.execute("INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (_name, _email, _phone, _address))
             # sqlQuery = "INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (_name, _email, _phone, _address)
-            # bindData = (_name, _email, _phone, _address)
-            cur = mysql.connection.cursor()
+            # bindData = (_name, _email, _phone, _address)            
             # cursor = conn.cursor()
             # cur.execute(sqlQuery)
             mysql.connection.commit()
