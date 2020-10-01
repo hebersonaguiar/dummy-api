@@ -15,10 +15,10 @@ def add_emp():
         if _name and _email and _phone and _address and request.method == 'POST':
             sqlQuery = "INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s, %s)"
             bindData = (_name, _email, _phone, _address)
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute(sqlQuery, bindData)
-            conn.commit()
+            cur = mysql.connection.cursor()
+            # cursor = conn.cursor()
+            cur.execute(sqlQuery, bindData)
+            mysql.connection.commit()
             respone = jsonify('Employee added successfully!')
             respone.status_code = 200
             return respone
@@ -28,13 +28,11 @@ def add_emp():
         print(e)
     finally:
         cursor.close()
-        conn.close()
 
 @app.route('/emp')
 def emp():
     try:
         cur = mysql.connection.cursor()
-        # cursor = conn.cursor(pymysql.cursors.DictCursor)
         cur.execute("SELECT id, name, email, phone, address FROM rest_emp")
         empRows = cur.fetchall()
         respone = jsonify(empRows)
@@ -48,18 +46,17 @@ def emp():
 @app.route('/emp/<int:id>')
 def emp_id(id):
     try:
-        conn = mysql.connect()
-        cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("SELECT id, name, email, phone, address FROM rest_emp WHERE id =%s", id)
-        empRow = cursor.fetchone()
+        cur = mysql.connection.cursor()
+        # cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cur.execute("SELECT id, name, email, phone, address FROM rest_emp WHERE id =%s", id)
+        empRow = cur.fetchone()
         respone = jsonify(empRow)
         respone.status_code = 200
         return respone
     except Exception as e:
         print(e)
     finally:
-        cursor.close()
-        conn.close()
+        cur.close()
 
 @app.route('/update', methods=['PUT'])
 def update_emp():
@@ -73,10 +70,10 @@ def update_emp():
         if _name and _email and _phone and _address and _id and request.method == 'PUT':
             sqlQuery = "UPDATE rest_emp SET name=%s, email=%s, phone=%s, address=%s WHERE id=%s"
             bindData = (_name, _email, _phone, _address, _id,)
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute(sqlQuery, bindData)
-            conn.commit()
+            cur = mysql.connection.cursor()
+            # cursor = conn.cursor()
+            cur.execute(sqlQuery, bindData)
+            mysql.connection.commit()
             respone = jsonify('Employee updated successfully!')
             respone.status_code = 200
             return respone
@@ -85,24 +82,22 @@ def update_emp():
     except Exception as e:
         print(e)
     finally:
-        cursor.close()
-        conn.close()
+        cur.close()
         
 @app.route('/delete/<int:id>', methods=['DELETE'])
 def delete_emp(id):
     try:
-        conn = mysql.connect()
-        cursor = conn.cursor()
-        cursor.execute("DELETE FROM rest_emp WHERE id =%s", (id,))
-        conn.commit()
+        cur = mysql.connection.cursor()
+        # cursor = conn.cursor()
+        cur.execute("DELETE FROM rest_emp WHERE id =%s", (id,))
+        mysql.connection.commit()
         respone = jsonify('Employee deleted successfully!')
         respone.status_code = 200
         return respone
     except Exception as e:
         print(e)
     finally:
-        cursor.close()
-        conn.close()
+        cur.close()
 
 @app.errorhandler(404)
 def not_found(error=None):
