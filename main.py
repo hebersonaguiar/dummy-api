@@ -18,7 +18,7 @@ def add_emp():
             # bindData = (_name, _email, _phone, _address)
             cur = mysql.connection.cursor()
             # cursor = conn.cursor()
-            cur.execute(sqlQuery)
+            # cur.execute(sqlQuery)
             mysql.connection.commit()
             respone = jsonify('Employee added successfully!')
             respone.status_code = 200
