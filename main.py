@@ -8,13 +8,18 @@ from flask import flash, request
 def add_emp():
     try:
         _json = request.json
-        _name = _json['name']
-        _email = _json['email']
-        _phone = _json['phone']
-        _address = _json['address']
-        if _name and _email and _phone and _address and request.method == 'POST':
+        # _name = _json['name']
+        # _email = _json['email']
+        # _phone = _json['phone']
+        # _address = _json['address']
+        name = str(request.json.get('name', None))
+        email = str(request.json.get('email', None))
+        phone = str(request.json.get('phone', None))
+        address = str(request.json.get('address', None))
+        # if _name and _email and _phone and _address and request.method == 'POST':
+        if name and email and phone and address and request.method == 'POST': 
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (_name, _email, _phone, _address))
+            cur.execute("INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (name, email, phone, address))
             # sqlQuery = "INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (_name, _email, _phone, _address)
             # bindData = (_name, _email, _phone, _address)            
             # cursor = conn.cursor()
