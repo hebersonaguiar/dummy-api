@@ -1,7 +1,7 @@
-import pymysql, json, re
+import pymysql, json, re, requests
 from app import app
 from config import mysql
-from flask import jsonify
+from flask_jsonpify import jsonify
 from flask import flash, request
 		
 @app.route('/add', methods=['POST'])
@@ -30,8 +30,7 @@ def add_emp():
             # cursor = conn.cursor()
             # cur.execute(sqlQuery)
             mysql.connection.commit()
-            #respone = jsonify('Employee added successfully!')
-            respone = 'Employee added successfully!'
+            respone = jsonify('Employee added successfully!')
             respone.status_code = 200
             return respone
         else:
