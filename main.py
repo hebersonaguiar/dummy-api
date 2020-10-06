@@ -1,4 +1,4 @@
-import pymysql, json, re, requests
+import json, re, requests
 from app import app
 from config import mysql
 from flask_jsonpify import jsonify
