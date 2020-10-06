@@ -26,36 +26,13 @@ def add_emp():
         _email = _json['email']
         _phone = _json['phone']
         _address = _json['address']
-        # name = str(request.json.get('name', None))
-        # email = str(request.json.get('email', None))
-        # phone = str(request.json.get('phone', None))
-        # address = str(request.json.get('address', None))
-        name = str(_name)
-        email = str(_email)
-        phone = str(_phone)
-        address = str(_address)
-        # print(type(name))
-        # print(type(email))
-        # print(type(phone))
-        # print(type(address))
-        # print("Before IF")
-        # print("Name: " + name + " Email: " + email +" Phone: " + phone + " Address: " + address + " Request: " + request.method)
         if _name and _email and _phone and _address and request.method == 'POST':
-        # if name and email and phone and address and request.method == 'POST': 
-            # print("After IF")
-            # print("Name: " + name + " Email: " + email +" Phone: " + phone + " Address: " + address + " Request: " + request.method)
             cur = mysql.connection.cursor()
-            # print(cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address)))
-            # cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
-            cur.execute("INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (name, email, phone, address))
-            # bindData = (_name, _email, _phone, _address)            
-            # cursor = conn.cursor()
-            # cur.execute(sqlQuery)
+            cur.execute("INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (str(_name), str(_email), str(_phone), str(_address)))
             mysql.connection.commit()
             respone = jsonify('Employee added successfully!')
-            # response = "OK"
             respone.status_code = 200
-            return 'respone'
+            return respone
         else:
             return not_found()
     except Exception as e:
