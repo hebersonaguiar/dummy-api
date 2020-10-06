@@ -1,9 +1,10 @@
 import json, re, requests
 from app import app
 from config import mysql
-from flask_jsonpify import jsonify
 from flask import flash, request
-		
+from flask_jsonpify import jsonify
+from flask_restful import Resource, Api
+
 @app.route('/add', methods=['POST'])
 def add_emp():
     try:
