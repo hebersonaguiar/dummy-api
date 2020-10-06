@@ -16,9 +16,9 @@ def add_emp():
         email = str(request.json.get('email', None))
         phone = str(request.json.get('phone', None))
         address = str(request.json.get('address', None))
-		cur = mysql.connection.cursor()
-		cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
-		mysql.connection.commit()
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
+        mysql.connection.commit()
 
 		return 'Usuario Inserido'
 
