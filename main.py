@@ -48,7 +48,8 @@ def add_emp():
             # cursor = conn.cursor()
             # cur.execute(sqlQuery)
             mysql.connection.commit()
-            respone = jsonify('Employee added successfully!')
+            # respone = jsonify('Employee added successfully!')
+            response = "OK"
             respone.status_code = 200
             return respone
         else:
