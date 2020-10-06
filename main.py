@@ -1,22 +1,22 @@
-import json, re, requests
-from app import app
-from config import mysql
-from flask import Flask, flash, request
-from flask_jsonpify import jsonify
-from flask_restful import Resource, Api
-from json import dumps
-
-
-# import json, re, csv
+# import json, re, requests
 # from app import app
 # from config import mysql
-# from flask import Flask, render_template, request, redirect, url_for, flash, stream_with_context, g, session
-# from flask_restful import Resource, Api
-# from flask_mysqldb import MySQL
-# from flask_cors import CORS
+# from flask import Flask, flash, request
 # from flask_jsonpify import jsonify
+# from flask_restful import Resource, Api
 # from json import dumps
-# from io import StringIO
+
+
+import json, re, csv
+from app import app
+from config import mysql
+from flask import Flask, render_template, request, redirect, url_for, flash, stream_with_context, g, session
+from flask_restful import Resource, Api
+from flask_mysqldb import MySQL
+from flask_cors import CORS
+from flask_jsonpify import jsonify
+from json import dumps
+from io import StringIO
 
 @app.route('/add', methods=['POST'])
 def add_emp():
@@ -47,10 +47,10 @@ def add_emp():
             cur = mysql.connection.cursor()
             # print(cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address)))
             # cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
-            sqlQuery = "INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (name, email, phone, address)
+            cur.execute("INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (name, email, phone, address))
             # bindData = (_name, _email, _phone, _address)            
             # cursor = conn.cursor()
-            cur.execute(sqlQuery)
+            # cur.execute(sqlQuery)
             mysql.connection.commit()
             respone = jsonify('Employee added successfully!')
             # response = "OK"
