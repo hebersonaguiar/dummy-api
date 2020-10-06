@@ -8,6 +8,7 @@ from flask_cors import CORS
 from flask_jsonpify import jsonify
 from json import dumps
 from io import StringIO
+from pprint import pprint
 
 # app = Flask(__name__)
 # api = Api(app)
@@ -36,6 +37,7 @@ def add_emp():
         email = str(request.json.get('email', None))
         phone = str(request.json.get('phone', None))
         address = str(request.json.get('address', None))
+        pprint(request.json) 
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
         mysql.connection.commit()
