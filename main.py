@@ -21,11 +21,10 @@ def add_emp():
         mysql.connection.commit()
         
         return 'Usuario Inserido'
-
-	except Exception as e:
-		return 'error'
-	finally:
-		cur.close()
+    except Exception as e:
+        return 'error'
+    finally:
+        cur.close()
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port='5000')
