@@ -19,6 +19,9 @@ def add_emp():
         phone = str(request.json.get('phone', None))
         address = str(request.json.get('address', None))
         print(type(name))
+        print(type(email))
+        print(type(phone))
+        print(type(address))
         print("Before IF")
         print("Name: " + name + " Email: " + email +" Phone: " + phone + " Address: " + address + " Request: " + request.method)
         # if _name and _email and _phone and _address and request.method == 'POST':
