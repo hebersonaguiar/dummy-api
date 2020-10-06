@@ -30,6 +30,7 @@ def add_emp():
             print("Name: " + name + " Email: " + email +" Phone: " + phone + " Address: " + address + " Request: " + request.method)
             cur = mysql.connection.cursor()
             cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
+            # cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
             # sqlQuery = "INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (_name, _email, _phone, _address)
             # bindData = (_name, _email, _phone, _address)            
             # cursor = conn.cursor()
