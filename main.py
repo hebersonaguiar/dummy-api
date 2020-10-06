@@ -10,10 +10,10 @@ from json import dumps
 from io import StringIO
 from pprint import pprint
 
-# app = Flask(__name__)
-# api = Api(app)
-# CORS(app, resources={r"/*": {"origins": "*"}})
-# app.secret_key = "flash message"
+app = Flask(__name__)
+api = Api(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
+app.secret_key = "flash message"
 
 app = Flask(__name__)
 api = Api(app)
@@ -28,7 +28,6 @@ app.config['MYSQL_HOST'] = 'mysql'
 # mysql.init_app(app)
 
 mysql = MySQL(app)
-
 
 @app.route('/add', methods=['POST'])
 def add_emp():
