@@ -4,6 +4,7 @@ from config import mysql
 from flask import Flask, flash, request
 from flask_jsonpify import jsonify
 from flask_restful import Resource, Api
+from json import dumps
 
 @app.route('/add', methods=['POST'])
 def add_emp():
