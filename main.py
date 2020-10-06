@@ -19,8 +19,8 @@ def add_emp():
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
         mysql.connection.commit()
-
-		return 'Usuario Inserido'
+        
+        return 'Usuario Inserido'
 
 	except Exception as e:
 		return 'error'
