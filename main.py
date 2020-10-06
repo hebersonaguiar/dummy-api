@@ -41,7 +41,7 @@ def add_emp():
             print("After IF")
             print("Name: " + name + " Email: " + email +" Phone: " + phone + " Address: " + address + " Request: " + request.method)
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
+            print(cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address)))
             # cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
             # sqlQuery = "INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (_name, _email, _phone, _address)
             # bindData = (_name, _email, _phone, _address)            
@@ -49,9 +49,9 @@ def add_emp():
             # cur.execute(sqlQuery)
             mysql.connection.commit()
             # respone = jsonify('Employee added successfully!')
-            response = "OK"
-            respone.status_code = 200
-            return respone
+            # response = "OK"
+            # respone.status_code = 200
+            return 'respone'
         else:
             return not_found()
     except Exception as e:
