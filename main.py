@@ -22,7 +22,7 @@ def add_emp():
         
         return 'Usuario Inserido'
     except Exception as e:
-        return 'error'
+        print(e)
     finally:
         cur.close()
 
