@@ -9,7 +9,12 @@ from flask_jsonpify import jsonify
 from json import dumps
 from io import StringIO
 
-mysql = MySQL()
+# app = Flask(__name__)
+# api = Api(app)
+# CORS(app, resources={r"/*": {"origins": "*"}})
+# app.secret_key = "flash message"
+
+# mysql = MySQL()
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'my-secret-pw'
 app.config['MYSQL_DB'] = 'rest_emp'
@@ -27,7 +32,7 @@ def add_emp():
         phone = str(request.json.get('phone', None))
         address = str(request.json.get('address', None))
         cur = mysql.connection.cursor()
-        print("Execute: " + cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address)))
+        cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
         mysql.connection.commit()
         
         return 'Usuario Inserido'
