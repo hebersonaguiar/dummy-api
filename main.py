@@ -19,11 +19,11 @@ def add_emp():
         address = str(request.json.get('address', None))
         print(type(name))
         print("Before IF")
-        print("Name: " + name + " Email: " + " Phone: " + phone + " Address: " + address + " Request: " + request.method)
+        print("Name: " + name + " Email: " + email +" Phone: " + phone + " Address: " + address + " Request: " + request.method)
         # if _name and _email and _phone and _address and request.method == 'POST':
         if name and email and phone and address and request.method == 'POST': 
             print("After IF")
-            print("Name: " + name + " Email: " + " Phone: " + phone + " Address: " + address + " Request: " + request.method)
+            print("Name: " + name + " Email: " + email +" Phone: " + phone + " Address: " + address + " Request: " + request.method)
             cur = mysql.connection.cursor()
             cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
             # sqlQuery = "INSERT INTO rest_emp(name, email, phone, address) VALUES(%s, %s, %s, %s)", (_name, _email, _phone, _address)
