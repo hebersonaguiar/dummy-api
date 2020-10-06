@@ -19,7 +19,7 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'my-secret-pw'
 app.config['MYSQL_DB'] = 'rest_emp'
 app.config['MYSQL_HOST'] = 'mysql'
-mysql.init_app(app)
+# mysql.init_app(app)
 
 mysql = MySQL(app)
 
