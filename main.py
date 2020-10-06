@@ -15,16 +15,11 @@ api = Api(app)
 CORS(app, resources={r"/*": {"origins": "*"}})
 app.secret_key = "flash message"
 
-app = Flask(__name__)
-api = Api(app)
-CORS(app, resources={r"/*": {"origins": "*"}})
-app.secret_key = "flash message"
-
 # mysql = MySQL()
+app.config['MYSQL_HOST'] = 'mysql'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'my-secret-pw'
 app.config['MYSQL_DB'] = 'rest_emp'
-app.config['MYSQL_HOST'] = 'mysql'
 # mysql.init_app(app)
 
 mysql = MySQL(app)
@@ -36,12 +31,13 @@ def add_emp():
         email = str(request.json.get('email', None))
         phone = str(request.json.get('phone', None))
         address = str(request.json.get('address', None))
-        pprint(request.json) 
+        # pprint(request.json) 
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO rest_emp (name, email, phone, address) VALUES (%s, %s, %s, %s)", (name, email, phone, address))
         mysql.connection.commit()
         
         return 'Usuario Inserido'
+
     except Exception as e:
         print(e)
     finally:
