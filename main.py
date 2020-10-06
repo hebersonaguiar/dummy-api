@@ -1,5 +1,5 @@
 import json, re, csv
-from app import app
+# from app import app
 # from config import mysql
 from flask import Flask, render_template, request, redirect, url_for, flash, stream_with_context, g, session
 from flask_restful import Resource, Api
@@ -13,6 +13,11 @@ from io import StringIO
 # api = Api(app)
 # CORS(app, resources={r"/*": {"origins": "*"}})
 # app.secret_key = "flash message"
+
+app = Flask(__name__)
+api = Api(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
+app.secret_key = "flash message"
 
 # mysql = MySQL()
 app.config['MYSQL_USER'] = 'root'
