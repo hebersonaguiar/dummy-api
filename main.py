@@ -24,7 +24,6 @@ def add_emp():
             return not_found()
     except Exception as e:
         print(e)
-        return e
     finally:
         cur.close()
 
@@ -46,7 +45,6 @@ def emp():
 def emp_id(id):
     try:
         cur = mysql.connection.cursor()
-        # cursor = conn.cursor(pymysql.cursors.DictCursor)
         cur.execute("SELECT id, name, email, phone, address FROM rest_emp WHERE id =%s", id)
         empRow = cur.fetchone()
         respone = jsonify(empRow)
@@ -70,7 +68,6 @@ def update_emp():
             sqlQuery = "UPDATE rest_emp SET name=%s, email=%s, phone=%s, address=%s WHERE id=%s"
             bindData = (_name, _email, _phone, _address, _id,)
             cur = mysql.connection.cursor()
-            # cursor = conn.cursor()
             cur.execute(sqlQuery, bindData)
             mysql.connection.commit()
             respone = jsonify('Employee updated successfully!')
@@ -87,7 +84,6 @@ def update_emp():
 def delete_emp(id):
     try:
         cur = mysql.connection.cursor()
-        # cursor = conn.cursor()
         cur.execute("DELETE FROM rest_emp WHERE id =%s", (id,))
         mysql.connection.commit()
         respone = jsonify('Employee deleted successfully!')
