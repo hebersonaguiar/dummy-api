@@ -7,16 +7,18 @@
 # from json import dumps
 
 
-import json, re, csv
+import json
+#, re, csv
 from app import app
 from config import mysql
-from flask import Flask, render_template, request, redirect, url_for, flash, stream_with_context, g, session
-from flask_restful import Resource, Api
-from flask_mysqldb import MySQL
+# from flask import Flask, render_template, request, redirect, url_for, flash, stream_with_context, g, session
+from flask import Flask, request, flash
+# from flask_restful import Resource, Api
+# from flask_mysqldb import MySQL
 from flask_cors import CORS
 from flask_jsonpify import jsonify
-from json import dumps
-from io import StringIO
+# from json import dumps
+# from io import StringIO
 
 @app.route('/add', methods=['POST'])
 def add_emp():
