@@ -16,10 +16,10 @@ help() {
 if [ ! -z "$MYSQL_HOST" ] || [ ! -z "$MYSQL_USER" ] || [ ! -z "$MYSQL_PASS" ]|| [ ! -z "$MYSQL_DB" ]; then
 
 
-    sed -i "s/MYSQL_HOST/$MYSQL_HOST/g" /opt/config.py
-    sed -i "s/MYSQL_USER/$MYSQL_USER/g" /opt/config.py
-    sed -i "s/MYSQL_PASS/$MYSQL_PASS/g" /opt/config.py
-    sed -i "s/MYSQL_DB/$MYSQL_DB/g" /opt/config.py  
+    sed -i "s/HOST_MYSQL/$MYSQL_HOST/g" /opt/config.py
+    sed -i "s/USER_MYSQL/$MYSQL_USER/g" /opt/config.py
+    sed -i "s/PASS_MYSQL/$MYSQL_PASS/g" /opt/config.py
+    sed -i "s/DB_MYSQL/$MYSQL_DB/g" /opt/config.py  
 
 else
 	echo "Please enter the required data!"
