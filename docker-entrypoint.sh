@@ -13,7 +13,7 @@ help() {
     exit 1
 }
 
-if [ ! -z "$AD_SERVER" ] || [ ! -z "$USER_SVC" ] || [ ! -z "$PASS_SVC" ]|| [ ! -z "$API_DB" ]; then
+if [ ! -z "$MYSQL_HOST" ] || [ ! -z "$MYSQL_USER" ] || [ ! -z "$MYSQL_PASS" ]|| [ ! -z "$MYSQL_DB" ]; then
 
 
     sed -i "s/MYSQL_HOST/$MYSQL_HOST/g" /opt/config.py
